@@ -1,6 +1,6 @@
 import { Card, CardContent, CardActions, Typography, Button, Box, Chip } from '@mui/material';
-import MapIcon from '@mui/icons-material/Map';
-import ExploreIcon from '@mui/icons-material/Explore';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import ImageIcon from '@mui/icons-material/Image';
 
 type MapAccessCardProps = {
   onNavigateToMap: () => void;
@@ -10,26 +10,26 @@ export function MapAccessCard({ onNavigateToMap }: MapAccessCardProps) {
   return (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-        <MapIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
+        <ImageIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
         <Typography variant="h5" component="h2" gutterBottom>
-          Carbon Projects Map
+          Upload Land Image
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Explore carbon offset projects across New Zealand. Find tree planting sites, renewable energy projects, and conservation areas.
+          Upload photos of your land to assess its carbon credit potential. Our AI analyzes vegetation, terrain, and land use to estimate carbon sequestration capacity.
         </Typography>
         <Box sx={{ mt: 2 }}>
-          <Chip label="New Zealand Focus" size="small" color="success" />
+          <Chip label="AI-Powered Analysis" size="small" color="success" />
         </Box>
       </CardContent>
       <CardActions sx={{ justifyContent: 'center', pb: 2 }}>
         <Button
           variant="contained"
           size="large"
-          startIcon={<ExploreIcon />}
+          startIcon={<CloudUploadIcon />}
           onClick={onNavigateToMap}
           sx={{ backgroundColor: 'success.main', '&:hover': { backgroundColor: 'success.dark' } }}
         >
-          Explore Projects
+          Upload & Assess
         </Button>
       </CardActions>
     </Card>

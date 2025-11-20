@@ -13,7 +13,7 @@ export function CarbonStatsCards() {
             <NatureIcon sx={{ fontSize: 40, color: 'success.main', mb: 1 }} />
             <Typography variant="h4" color="success.main">0</Typography>
             <Typography variant="body2" color="text.secondary">
-              Carbon Credits Earned
+              Images Uploaded
             </Typography>
           </CardContent>
         </Card>
@@ -22,9 +22,9 @@ export function CarbonStatsCards() {
         <Card sx={{ textAlign: 'center', backgroundColor: '#e3f2fd' }}>
           <CardContent>
             <AccountBalanceWalletIcon sx={{ fontSize: 40, color: 'primary.main', mb: 1 }} />
-            <Typography variant="h4" color="primary.main">$0.00</Typography>
+            <Typography variant="h4" color="primary.main">0 tCO₂</Typography>
             <Typography variant="body2" color="text.secondary">
-              Credit Value (NZD)
+              Estimated Carbon Credits
             </Typography>
           </CardContent>
         </Card>
@@ -33,9 +33,9 @@ export function CarbonStatsCards() {
         <Card sx={{ textAlign: 'center', backgroundColor: '#fff3e0' }}>
           <CardContent>
             <ForestIcon sx={{ fontSize: 40, color: 'warning.main', mb: 1 }} />
-            <Typography variant="h4" color="warning.main">0</Typography>
+            <Typography variant="h4" color="warning.main">0 ha</Typography>
             <Typography variant="body2" color="text.secondary">
-              Trees Planted
+              Land Area Assessed
             </Typography>
           </CardContent>
         </Card>
@@ -44,9 +44,9 @@ export function CarbonStatsCards() {
         <Card sx={{ textAlign: 'center', backgroundColor: '#fce4ec' }}>
           <CardContent>
             <TrendingUpIcon sx={{ fontSize: 40, color: 'secondary.main', mb: 1 }} />
-            <Typography variant="h4" color="secondary.main">0kg</Typography>
+            <Typography variant="h4" color="secondary.main">0</Typography>
             <Typography variant="body2" color="text.secondary">
-              CO₂ Offset This Month
+              Assessments Complete
             </Typography>
           </CardContent>
         </Card>

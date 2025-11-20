@@ -3,6 +3,7 @@ import { Map } from './components/map';
 import { Dashboard } from './components/dashBoard';
 import { Login } from './auth/login';
 import { Signup } from './auth/signup';
+import { NavigationSidebar } from './components/NavigationSidebar';
 
 type AuthState = 'login' | 'signup' | 'authenticated';
 type ViewState = 'dashboard' | 'map';
@@ -42,51 +43,27 @@ function App() {
     setCurrentView('map');
   };
 
-  const handleBackToDashboard = () => {
-    setCurrentView('dashboard');
-  };
-
   if (authState === 'authenticated' && user) {
-    if (currentView === 'map') {
-      return (
-        <>
-          <div style={{ 
-            position: 'absolute', 
-            top: 10, 
-            right: 10, 
-            zIndex: 1001,
-            background: 'white',
-            padding: '8px 16px',
-            borderRadius: '4px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-            display: 'flex',
-            gap: '10px'
-          }}>
-            <button 
-              onClick={handleBackToDashboard}
-              style={{ cursor: 'pointer' }}
-            >
-              Back to Dashboard
-            </button>
-            <span>Welcome, {user}</span>
-            <button 
-              onClick={handleLogout}
-              style={{ cursor: 'pointer' }}
-            >
-              Logout
-            </button>
-          </div>
-          <Map />
-        </>
-      );
-    }
-
     return (
-      <Dashboard
-        user={user}
-        onNavigateToMap={handleNavigateToMap}
-        onLogout={handleLogout}
-      />
+      <>
+        <NavigationSidebar
+          currentView={currentView}
+          onNavigate={(view) => setCurrentView(view)}
+          onLogout={handleLogout}
+          user={user}
+        />
+        <div style={{ marginLeft: '240px' }}>
+          {currentView === 'map' ? (
+            <Map />
+          ) : (
+            <Dashboard
+              user={user}
+              onNavigateToMap={handleNavigateToMap}
+              onLogout={handleLogout}
+            />
+          )}
+        </div>
+      </>
     );
   }
 
