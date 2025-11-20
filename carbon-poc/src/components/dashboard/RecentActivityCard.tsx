@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography, Box, Button } from '@mui/material';
-import ForestIcon from '@mui/icons-material/Forest';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 export function RecentActivityCard() {
   return (
@@ -9,11 +9,11 @@ export function RecentActivityCard() {
           Recent Activity
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          No carbon credit activity yet. Start by exploring projects on the map and making your first investment in New Zealand's green future!
+          No assessments yet. Upload an image of your land to get started! Our AI will analyze vegetation coverage, soil quality, and terrain to estimate your land's carbon credit potential.
         </Typography>
         <Box sx={{ mt: 2 }}>
-          <Button variant="outlined" size="small" startIcon={<ForestIcon />}>
-            Browse Projects
+          <Button variant="outlined" size="small" startIcon={<CloudUploadIcon />}>
+            Upload Image
           </Button>
         </Box>
       </CardContent>

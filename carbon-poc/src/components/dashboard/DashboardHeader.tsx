@@ -3,9 +3,10 @@ import { Box, Typography, Button } from '@mui/material';
 type DashboardHeaderProps = {
   user: string;
   onLogout: () => void;
+  showLogout?: boolean;
 };
 
-export function DashboardHeader({ user, onLogout }: DashboardHeaderProps) {
+export function DashboardHeader({ user, onLogout, showLogout = true }: DashboardHeaderProps) {
   return (
     <Box
       sx={{
@@ -20,16 +21,18 @@ export function DashboardHeader({ user, onLogout }: DashboardHeaderProps) {
       }}
     >
       <Box>
-        <Typography variant="h4" component="h1">
+        <Typography sx={{color:"black"}} variant="h4" component="h1">
           Welcome back, {user}
         </Typography>
         <Typography variant="subtitle1" color="text.secondary">
           Carbon Credit Management Portal
         </Typography>
       </Box>
-      <Button variant="outlined" onClick={onLogout}>
-        Logout
-      </Button>
+      {showLogout && (
+        <Button variant="outlined" onClick={onLogout}>
+          Logout
+        </Button>
+      )}
     </Box>
   );
 }
