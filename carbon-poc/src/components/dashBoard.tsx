@@ -22,7 +22,7 @@ export function Dashboard({ user, onNavigateToMap, onLogout }: DashboardProps) {
         padding: 3,
       }}
     >
-      <DashboardHeader user={user} onLogout={onLogout} />
+      <DashboardHeader user={user} onLogout={onLogout} showLogout={false} />
       
       <CarbonStatsCards />
 
