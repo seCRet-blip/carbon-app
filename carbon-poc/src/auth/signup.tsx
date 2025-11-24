@@ -10,25 +10,35 @@ export function Signup({ onSignup, onSwitchToLogin }: SignupProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [showError, setShowError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
+    if (email.length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError('Please enter a valid email address');
+    } else {
+      setEmailError('');
+    }
+
     if (!password && !confirmPassword) {
-      setShowError('');
+      setPasswordError('');
+      return;
     }
 
     if (password !== confirmPassword) {
-      setShowError('Passwords do not match');
+      setPasswordError('Passwords do not match');
     } else if (password.length > 0 && password.length < 8) {
-      setShowError('Password must be at least 8 characters long');
+      setPasswordError('Password must be at least 8 characters long');
+    } else if (!/[A-Z]/.test(password)) {
+      setPasswordError('Password must contain at least one uppercase letter');
     } else {
-      setShowError('');
+      setPasswordError('');
     }
-  }, [password, confirmPassword]);
+  }, [email, password, confirmPassword]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!showError) {
+    if (!passwordError) {
       onSignup(email, password, confirmPassword);
     }
   };
@@ -65,6 +75,9 @@ export function Signup({ onSignup, onSwitchToLogin }: SignupProps) {
             margin="normal"
             required
           />
+          <Typography variant='body2' color='error' sx={{ mt: 1 }}>
+            {emailError}
+          </Typography>
           <TextField
             fullWidth
             label="Password"
@@ -73,6 +86,7 @@ export function Signup({ onSignup, onSwitchToLogin }: SignupProps) {
             onChange={(e) => setPassword(e.target.value)}
             margin="normal"
             required
+            helperText="Enter at least 8 characters with one uppercase letter"
           />
           <TextField
             fullWidth
@@ -83,10 +97,10 @@ export function Signup({ onSignup, onSwitchToLogin }: SignupProps) {
             margin="normal"
             required
           />
-          <Typography variant='h6' color='error'>
-            {showError}
+          <Typography variant='body2' color='error' sx={{ mt: 1 }}>
+            {passwordError}
           </Typography>
-          {showError ? (
+          {passwordError ? (
             <Button
               type="submit"
               fullWidth
