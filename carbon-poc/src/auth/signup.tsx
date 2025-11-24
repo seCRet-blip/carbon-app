@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Paper, TextField, Button, Typography, Link } from '@mui/material';
 
 type SignupProps = {
@@ -10,14 +10,27 @@ export function Signup({ onSignup, onSwitchToLogin }: SignupProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showError, setShowError] = useState('');
+
+  useEffect(() => {
+    if (!password && !confirmPassword) {
+      setShowError('');
+    }
+
+    if (password !== confirmPassword) {
+      setShowError('Passwords do not match');
+    } else if (password.length > 0 && password.length < 8) {
+      setShowError('Password must be at least 8 characters long');
+    } else {
+      setShowError('');
+    }
+  }, [password, confirmPassword]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
+    if (!showError) {
+      onSignup(email, password, confirmPassword);
     }
-    onSignup(email, password, confirmPassword);
   };
 
   return (
@@ -70,14 +83,29 @@ export function Signup({ onSignup, onSwitchToLogin }: SignupProps) {
             margin="normal"
             required
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
+          <Typography variant='h6' color='error'>
+            {showError}
+          </Typography>
+          {showError ? (
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              disabled
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+          )}
           <Typography variant="body2">
             Already have an account?{' '}
             <Link
