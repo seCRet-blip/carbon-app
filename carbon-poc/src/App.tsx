@@ -1,41 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Map } from './components/map';
 import { Dashboard } from './components/dashBoard';
 import { Login } from './auth/login';
 import { Signup } from './auth/signup';
 import { NavigationSidebar } from './components/NavigationSidebar';
 
+import { auth } from '../config/firebase';
+import { onAuthStateChanged, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from 'firebase/auth';
+import type { User } from 'firebase/auth';
+
 type AuthState = 'login' | 'signup' | 'authenticated';
 type ViewState = 'dashboard' | 'map';
 
 function App() {
   const [authState, setAuthState] = useState<AuthState>('login');
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [currentView, setCurrentView] = useState<ViewState>('dashboard');
 
-  const handleLogin = (email: string, password: string) => {
-    // Here you would typically validate credentials with a backend
-    console.log('Login attempt:', { email, password });
-    
-    // For demo purposes, accept any login
-    setUser(email);
-    setAuthState('authenticated');
-    setCurrentView('dashboard'); // Start with dashboard
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const handleLogin = async (email: string, password: string) => {
+    try {
+      // Here you would typically validate credentials with a backend
+      console.log('Login attempt:', { email, password });
+      await signInWithEmailAndPassword(auth, email, password);
+      
+      // For demo purposes, accept any login
+      // setUser(email);
+      // setAuthState('authenticated');
+      setCurrentView('dashboard'); // Start with dashboard
+    } catch (er) {
+      console.log(er);
+    }
+
   };
 
-  const handleSignup = (email: string, password: string, confirmPassword: string) => {
-    // Here you would typically create a new user account
-    console.log('Signup attempt:', { email, password, confirmPassword });
-    
-    // For demo purposes, accept any signup
-    setUser(email);
-    setAuthState('authenticated');
-    setCurrentView('dashboard'); // Start with dashboard
+  const handleSignup = async (email: string, password: string) => {
+    try {
+      // Here you would typically create a new user account
+      console.log('Signup attempt:', { email, password });
+      await createUserWithEmailAndPassword(auth, email, password);
+          
+      // For demo purposes, accept any signup
+      // setUser(email);
+      // setAuthState('authenticated');
+      setCurrentView('dashboard'); // Start with dashboard
+    } catch (er) {
+      console.log(er);
+    }
   };
 
-  const handleLogout = () => {
-    setUser(null);
-    setAuthState('login');
+  const handleLogout = async () => {
+    await signOut(auth);
+    // setUser(null);
+    // setAuthState('login');
     setCurrentView('dashboard');
   };
 
@@ -43,21 +67,21 @@ function App() {
     setCurrentView('map');
   };
 
-  if (authState === 'authenticated' && user) {
+  if (user) {
     return (
       <>
         <NavigationSidebar
           currentView={currentView}
           onNavigate={(view) => setCurrentView(view)}
           onLogout={handleLogout}
-          user={user}
+          user={user.email || ''}
         />
         <div style={{ marginLeft: '240px' }}>
           {currentView === 'map' ? (
             <Map />
           ) : (
             <Dashboard
-              user={user}
+              user={user.email || ''}
               onNavigateToMap={handleNavigateToMap}
               onLogout={handleLogout}
             />

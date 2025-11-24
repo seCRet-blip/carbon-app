@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Paper, TextField, Button, Typography, Link } from '@mui/material';
 
 type SignupProps = {
-  onSignup: (email: string, password: string, confirmPassword: string) => void;
+  onSignup: (email: string, password: string) => void;
   onSwitchToLogin: () => void;
 };
 
@@ -38,8 +38,8 @@ export function Signup({ onSignup, onSwitchToLogin }: SignupProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!passwordError) {
-      onSignup(email, password, confirmPassword);
+    if (!emailError && !passwordError) {
+      onSignup(email, password);
     }
   };
 
