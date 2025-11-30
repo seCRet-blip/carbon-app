@@ -16,6 +16,7 @@ function App() {
   const [authState, setAuthState] = useState<AuthState>('login');
   const [user, setUser] = useState<User | null>(null);
   const [currentView, setCurrentView] = useState<ViewState>('dashboard');
+  const [loginError, setLoginError] = useState<string>('');
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -27,6 +28,7 @@ function App() {
 
   const handleLogin = async (email: string, password: string) => {
     try {
+      setLoginError('');
       // Here you would typically validate credentials with a backend
 
       await signInWithEmailAndPassword(auth, email, password);
@@ -35,8 +37,13 @@ function App() {
       // setUser(email);
       // setAuthState('authenticated');
       setCurrentView('dashboard'); // Start with dashboard
-    } catch (er) {
+    } catch (er: any) {
       console.log(er);
+      if (er.code === 'auth/wrong-password' || er.code === 'auth/user-not-found') {
+        setLoginError('Invalid email or password.');
+      } else {
+        setLoginError('Login Failed. Please try again.');
+      }
     }
 
   };
@@ -104,6 +111,7 @@ function App() {
     <Login
       onLogin={handleLogin}
       onSwitchToSignup={() => setAuthState('signup')}
+      errorMessage={loginError}
     />
   );
 }
