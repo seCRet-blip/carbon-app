@@ -19,6 +19,14 @@ build/
 .env.test.local
 .env.production.local
 
+# Firebase
+.firebase/
+.firebaserc
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+*.cache
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
