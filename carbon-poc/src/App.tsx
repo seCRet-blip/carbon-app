@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Map } from './components/map';
+import { useState,useEffect } from 'react';
+import { ImageUpload } from './components/ImageUpload';
 import { Dashboard } from './components/dashBoard';
 import { Login } from './auth/login';
 import { Signup } from './auth/signup';
@@ -85,7 +85,7 @@ function App() {
         />
         <div style={{ marginLeft: '240px' }}>
           {currentView === 'map' ? (
-            <Map />
+            <ImageUpload />
           ) : (
             <Dashboard
               user={user.email || ''}

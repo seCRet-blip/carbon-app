@@ -1,6 +1,6 @@
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Typography } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import MapIcon from '@mui/icons-material/Map';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import LogoutIcon from '@mui/icons-material/Logout';
 import NatureIcon from '@mui/icons-material/Nature';
 
@@ -87,7 +87,7 @@ export function NavigationSidebar({ currentView, onNavigate, onLogout, user }: N
             }}
           >
             <ListItemIcon>
-              <MapIcon sx={{ color: currentView === 'map' ? 'success.main' : 'white' }} />
+              <CloudUploadIcon sx={{ color: currentView === 'map' ? 'success.main' : 'white' }} />
             </ListItemIcon>
             <ListItemText primary="Upload & Assess" />
           </ListItemButton>
