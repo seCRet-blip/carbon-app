@@ -29,8 +29,6 @@ function App() {
   const handleLogin = async (email: string, password: string) => {
     try {
       setLoginError('');
-      // Here you would typically validate credentials with a backend
-
       await signInWithEmailAndPassword(auth, email, password);
       
       // For demo purposes, accept any login
@@ -50,8 +48,6 @@ function App() {
 
   const handleSignup = async (email: string, password: string) => {
     try {
-      // Here you would typically create a new user account
-
       await createUserWithEmailAndPassword(auth, email, password);
           
       // For demo purposes, accept any signup

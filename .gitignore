@@ -1,0 +1,93 @@
+# Dependencies
+node_modules/
+jspm_packages/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+.secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*.json
+*serviceAccount*.json
+*-adminsdk-*.json
+google-services.json
+GoogleService-Info.plist
+
+# Local / personal files
+*.local
+*.personal
+notes/
+TODO.local.md
+*.bak
+*.backup
+*.orig
+
+# Uploads and local media
+uploads/
+tmp/
+temp/
+carbon-poc/images_test_website/
+
+# Firebase local emulators and config
+.firebase/
+.firebaserc
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+*.cache
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+coverage/
+*.lcov
+.nyc_output/
+
+# Logs and runtime
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Editor and OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Tooling caches
+.eslintcache
+.vite/
+.cache/
+.parcel-cache/
+.npm/
+*.tsbuildinfo
+.netlify/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3

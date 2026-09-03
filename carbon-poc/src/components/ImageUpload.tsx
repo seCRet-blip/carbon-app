@@ -5,8 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ImageIcon from '@mui/icons-material/Image';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 const apiKey = import.meta.env.VITE_API_KEY;
-
-const API_ENDPOINT = 'https://your-api-host.example/predict';
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
 
 export function ImageUpload() {
