@@ -5,28 +5,28 @@ export function GettingStartedGuide() {
     <Card>
       <CardContent>
         <Typography variant="h5" component="h2" gutterBottom>
-          Getting Started with Carbon Credits
+          How to Assess Your Land for Carbon Credits
         </Typography>
         <Typography variant="body1" paragraph>
-          New Zealand is leading the way in carbon offset initiatives. Here's how you can participate:
+          Get started in three simple steps and discover your land's carbon sequestration potential:
         </Typography>
         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
           <Box sx={{ p: 2, border: '1px solid', borderColor: 'divider', borderRadius: 2, flex: '1 1 300px' }}>
-            <Typography variant="h6" color="primary">1. Explore Projects</Typography>
+            <Typography variant="h6" color="primary">1. Upload Images</Typography>
             <Typography variant="body2">
-              Use our interactive map to discover verified carbon offset projects across New Zealand.
+              Take clear photos of your land from multiple angles. Include vegetation, terrain, and any water features for the most accurate assessment.
             </Typography>
           </Box>
           <Box sx={{ p: 2, border: '1px solid', borderColor: 'divider', borderRadius: 2, flex: '1 1 300px' }}>
-            <Typography variant="h6" color="primary">2. Invest in Impact</Typography>
+            <Typography variant="h6" color="primary">2. AI Analysis</Typography>
             <Typography variant="body2">
-              Purchase carbon credits from projects that align with your environmental goals.
+              Our AI analyzes vegetation coverage, soil conditions, and land characteristics to estimate carbon sequestration capacity and potential credits.
             </Typography>
           </Box>
           <Box sx={{ p: 2, border: '1px solid', borderColor: 'divider', borderRadius: 2, flex: '1 1 300px' }}>
-            <Typography variant="h6" color="primary">3. Track Progress</Typography>
+            <Typography variant="h6" color="primary">3. View Results</Typography>
             <Typography variant="body2">
-              Monitor your carbon offset portfolio and see your environmental impact grow.
+              Receive a detailed report on your land's carbon credit potential, including estimated tCO₂ and recommended improvement strategies.
             </Typography>
           </Box>
         </Box>
